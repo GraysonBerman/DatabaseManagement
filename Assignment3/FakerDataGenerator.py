@@ -12,26 +12,28 @@
 #I intend to use this as a data generator for my final project, so I used variables that would be 'necessary' for a dating website.
 
 
-
-
 from faker import Faker
 import pandas as pd
 
-
+#Create faker
 faker = Faker()
-
-#make an array called tablename[] , fill the array values using faker things like name = (fake.name())
-#use a loop (while or for) to populate the array with data
-#move that array into the correct table
-#tablename.insert(count, [arr 0, arr 1])
 
 #2d array. Stores array of data in each index. Index is managed using the count variable
 tempArray = []
 
-count = -1
-while count < 50:
-    count += 1
 
+filename = raw_input("Please enter the filename you would like, not including the .csv extension")
+#appends .csv to filename
+csvFileName = filename + '.csv'
+
+#gets tuple quantity, converts to int for the while loop
+tupleQuantity = raw_input("Please enter the number of tuples you would like to generate")
+tupleQuantity = int(tupleQuantity, 10) #converts the input to an integer base 10
+
+
+count = -1
+while count < tupleQuantity:
+    count += 1
     firstName = faker.first_name()
     lastName = faker.last_name()
     #emailDomain is used in combination with first/last to generate an email using the same names
@@ -50,9 +52,8 @@ while count < 50:
 #You can use this for loop to print the contents of the array to see what was generated
 #i = 0
 #for i in tempArray:
-#    print(i)
+#   print(i)
 
-#dataframe used to output as a csv file called FakerData.csv
+#dataframe used to output as a csv file
 my_dataframe = pd.DataFrame(tempArray)
-my_dataframe.to_csv('FakerData.csv', index = False, header = False)
-
+my_dataframe.to_csv(csvFileName, index = False, header = False)
