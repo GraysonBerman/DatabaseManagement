@@ -34,8 +34,17 @@ tupleQuantity = int(tupleQuantity, 10) #converts the input to an integer base 10
 count = -1
 while count < tupleQuantity:
     count += 1
-    firstName = faker.first_name()
+    if count%2 == 1:
+        firstName = faker.first_name_male()
+        gender = 'male'
+    elif count%2 == 0:
+        firstName = faker.first_name_female()
+        gender = 'female'
+    else:
+        firstName = faker.first_name_male()
+        gender = 'male'
     lastName = faker.last_name()
+    fullName = firstName + ' ' + lastName
     #emailDomain is used in combination with first/last to generate an email using the same names
     emailDomain = faker.free_email_domain()
     #email concatenates vars to create firstnamelastname@emaildomain
@@ -47,7 +56,7 @@ while count < tupleQuantity:
     dateOfBirth = faker.date_of_birth(tzinfo=None, minimum_age = 18, maximum_age = 80)
     creditCardNum = faker.credit_card_number(card_type = None)
     creditCardSecCode = faker.credit_card_security_code(card_type=None)
-    tempArray.insert(count, [firstName, lastName, email, phoneNum, state, city, occupation, dateOfBirth, creditCardNum, creditCardSecCode])
+    tempArray.insert(count, [fullName, firstName, lastName, gender, email, phoneNum, state, city, occupation, dateOfBirth, creditCardNum, creditCardSecCode])
 
 #You can use this for loop to print the contents of the array to see what was generated
 #i = 0
