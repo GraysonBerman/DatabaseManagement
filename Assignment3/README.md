@@ -23,3 +23,10 @@ This file is used to generate fake data using Faker. You need to install Faker a
 Karl Hickel showed me how faker works and gave me a link to the website https://faker.readthedocs.io/en/master/locales/en_US.html#faker-providers-credit-card
 so that I could find functions for Faker.
 
+I created a DatabaseConnector class in a java file called DatabaseConnector.java.
+It has a default constructor and a function getCon() used to create a connectiton to my specific SQL server using my 
+user/pass/ip/port, and includes useSSL=false. useSSL=false was needed because I was receiving an error when
+trying to connect without it.
+I had to download a mysql-connector-java-5.1.47.zip which had a jar file. I loaded it into my project libraries. 
+Some other students didn't have this issue, I think it may have been with the way I set up my project in IntelliJ.
+
