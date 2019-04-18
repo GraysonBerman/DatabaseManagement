@@ -30,3 +30,5 @@ trying to connect without it.
 I had to download a mysql-connector-java-5.1.47.zip which had a jar file. I loaded it into my project libraries. 
 Some other students didn't have this issue, I think it may have been with the way I set up my project in IntelliJ.
 
+The CSVReader.java file is used to read in data from a CSV file and pass it into the DB on my sql server.
+Running the CSVReader.java file allows you to enter a filepath to a CSV file (either one you've generated using my faker file or the one I've provided) and will pass it to my SQL server.
