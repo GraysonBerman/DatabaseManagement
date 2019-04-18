@@ -22,6 +22,7 @@ import java.nio.file.Paths;
 
 import java.util.Scanner;
 
+import java.sql.*;
 
 
 
@@ -43,12 +44,12 @@ public class CSVReader {
     private static String creditCardSecCode;
 
     private static Scanner reader = new Scanner(System.in);
-    public static String CSV_FILE_PATH;
+    private static String CSV_FILE_PATH;
 
+    CSVReader(){
+    }
 
-
-
-    public static void main(String[] args) throws IOException {
+    public static void getCSV() throws IOException {
         System.out.println("Enter file path of CSV file");
         CSV_FILE_PATH = reader.nextLine();
         try (
@@ -71,6 +72,42 @@ public class CSVReader {
                 creditCardSecCode = csvRecord.get(11);
             }
         }
+        catch (IOException e){
+            System.out.println("IOException: " + e);
+        }
+    }
 
+    public static void insertRecords()
+    {
+
+        DatabaseConnector myConnector = new DatabaseConnector();
+        Connection con = myConnector.getCon();
+
+        String personsQuery = "INSERT INTO Persons(fullName, firstName, lastName) VALUES (?, ?. ?)";
+        String locationQuery = "INSERT INTO Location(state, city) VALUES (?, ?, ?)";
+        String contactInfoQuery = "INSERT INTO ContactInfo(email, phoneNum) VALUES (?, ?)";
+        String billingInfoQuery = "INSERT INTO BillingInfo(creditCardNum, creditCardSecCode) VALUES (?, ?)";
+        String profileInfoQuery = "INSERT INTO ProfileInfo(firstName, lastName, occupation, dateOfBirth, gender, state, city)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try{
+            PreparedStatement personsStm = con.prepareStatement(personsQuery);
+            personsStm.execute();
+
+            PreparedStatement locationStm = con.prepareStatement(locationQuery);
+            locationStm.execute();
+
+            PreparedStatement contactInfoStm = con.prepareStatement(contactInfoQuery);
+            contactInfoStm.execute();
+
+            PreparedStatement billingInfoStm = con.prepareStatement(billingInfoQuery);
+            billingInfoStm.execute();
+
+            PreparedStatement profileInfoStm = con.prepareStatement(profileInfoQuery);
+            profileInfoStm.execute();
+        }
+        catch (SQLException e){
+            System.out.println("SQL Exception: " + e);
+        }
     }
 }
