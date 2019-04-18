@@ -49,13 +49,14 @@ public class CSVReader {
     CSVReader(){
     }
 
-    public static void getCSV() throws IOException {
+    //gets CSV info
+    public static void getCSV(){
         System.out.println("Enter file path of CSV file");
         CSV_FILE_PATH = reader.nextLine();
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
-        ) {
+        ){
             for (CSVRecord csvRecord : csvParser) {
                 // Accessing Values by Column Index, gets all 11 rows of info.
                 fullName = csvRecord.get(0);
@@ -72,11 +73,13 @@ public class CSVReader {
                 creditCardSecCode = csvRecord.get(11);
             }
         }
-        catch (IOException e){
+        catch(IOException e){
             System.out.println("IOException: " + e);
         }
+
     }
 
+    //inserts CSV info into tables
     public static void insertRecords()
     {
 
