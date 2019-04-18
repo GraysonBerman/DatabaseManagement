@@ -1,6 +1,14 @@
-//Chapman Coding Standards
-//Reference website for creating CSV reader
-//https://www.callicoder.com/java-read-write-csv-file-apache-commons-csv/
+/*
+Grayson Berman
+CPSC 408
+berma117@mail.chapman.edu
+April 16, 2019
+1760244
+Assignment 3
+This file prompts the user to enter a file path
+Then it reads in a CSV file from that file path and send the data to my SQL server
+Reference website for creating CSV reader: https://www.callicoder.com/java-read-write-csv-file-apache-commons-csv/
+*/
 
 
 import org.apache.commons.csv.CSVFormat;
@@ -11,6 +19,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import java.util.Scanner;
 
 
 
@@ -32,16 +42,17 @@ public class CSVReader {
     private static String creditCardNum;
     private static String creditCardSecCode;
 
+    private static Scanner reader = new Scanner(System.in);
+    public static String CSV_FILE_PATH;
 
 
 
-
-    private static final String SAMPLE_CSV_FILE_PATH = "/Users/graysonberman/Desktop/FakerData.csv/";
 
     public static void main(String[] args) throws IOException {
-    
+        System.out.println("Enter file path of CSV file");
+        CSV_FILE_PATH = reader.nextLine();
         try (
-                Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
+                Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
         ) {
             for (CSVRecord csvRecord : csvParser) {
@@ -58,8 +69,8 @@ public class CSVReader {
                 dateOfBirth = csvRecord.get(9);
                 creditCardNum = csvRecord.get(10);
                 creditCardSecCode = csvRecord.get(11);
-
             }
         }
+
     }
 }
