@@ -13,4 +13,8 @@ The five tables are:
 4) Location (Personid, state, city)
 5) ProfileInfo (Personid, occupation, dateOfBirth, gender, state, city)
 
-I made fake data using pycharm. The file is called 
+I made fake data using pycharm. The file is called FakerDataGenerator.py
+It allows input to make a file with a .csv extension. It allows input to choose how many tuples to make.
+It has these attributes: 
+fullName, firstName, lastName, gender, email, phoneNum, state, city, occupation, dateOfBirth, creditCardNum, creditCardSecCode
+It prints out to a CSV file. I provided a CSV file in the repo called FakerData.csv
