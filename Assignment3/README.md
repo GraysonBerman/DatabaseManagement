@@ -18,3 +18,8 @@ It allows input to make a file with a .csv extension. It allows input to choose 
 It has these attributes: 
 fullName, firstName, lastName, gender, email, phoneNum, state, city, occupation, dateOfBirth, creditCardNum, creditCardSecCode
 It prints out to a CSV file. I provided a CSV file in the repo called FakerData.csv
+
+This file is used to generate fake data using Faker. You need to install Faker and pandas using pip in the python console in order to generate and export the data as a CSV
+Karl Hickel showed me how faker works and gave me a link to the website https://faker.readthedocs.io/en/master/locales/en_US.html#faker-providers-credit-card
+so that I could find functions for Faker.
+
